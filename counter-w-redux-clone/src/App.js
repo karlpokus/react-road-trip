@@ -6,7 +6,7 @@ class App extends Component {
     super(props);
 
     // this can't be right :/
-    props.store.subscribe(this.forceUpdate.bind(this));
+    props.store.subscribe(this.forceUpdate.bind(this, null));
   }
 
   render() {
@@ -18,6 +18,7 @@ class App extends Component {
         <p>Any counter will update global state: { v }</p>
         <Counter v={ 1 } store={ store }/>
         <Counter v={ 5 } store={ store }/>
+        <Counter v={ 0 } store={ store }/>
       </div>
     );
   }

@@ -1,17 +1,17 @@
 import { isEqual } from 'underscore';
 
 // equivalent to createStore
-export default function reducks(reducer) {
+export default function reducks(reducer, ...middleware) {
   this.reducer = reducer;
   this.states = [];
-  this.subscribers = [];
+  this.subscribers = [...middleware];
   // run reducer so we have initial state ready
   this.dispatch({type: '_INITIAL_RUN'});
 }
 
 reducks.prototype._runSubscribers = function() {
   if (this.subscribers.length) {
-    this.subscribers.forEach(fn => fn());
+    this.subscribers.forEach(fn => fn(this.getState()));
   }
 }
 
@@ -36,7 +36,3 @@ reducks.prototype.dispatch = function(action) {
     this._runSubscribers();
   }
 }
-
-// todos
-// - dont unshift unchanged state
-// - middleware
