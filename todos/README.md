@@ -6,6 +6,7 @@
 - [x] reducers
 - [x] split reducers
 - [x] store
+- [ ] async + thunk
 - [ ] redux middleware
 - [ ] [reselect](https://github.com/reactjs/reselect)
 
